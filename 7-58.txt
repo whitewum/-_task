@@ -1,3 +1,0 @@
-rate的初始化非常量,并且是个静态成员,因此不能在类内初始化,错误.应加入constexpr与const;
-constexpr static const double rate = 6.5;
-对于vector<double> vec的初始化,由于要求静态成员必须是字面值常量类型的,vector显然不是,且类内静态成员的初始话化只支持常量整数类型,所以应将该vector得定义放到类外
