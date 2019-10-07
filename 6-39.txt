@@ -1,0 +1,5 @@
+(a)int calc(const int, const int)接受两个int类型的常量实参
+   非法.顶层const会被忽略,与第一条声明重复.
+(b)double geta() 返回类型为double类型的函数
+非法.函数的返回类型的不同不视作函数重载.
+(c)double *reset(double *)接收double类型的指针作为实参,并且返回double类型指针的函数
