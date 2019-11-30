@@ -1,0 +1,54 @@
+```c++
+// StrVec
+StrVec::StrVec(StrVec&& s) noexcept : elements(s.elements),
+                                      first_free(s.first_free),
+                                      cap(s.cap)
+{ s.elements = s.first_free = s.cap = nullptr; }
+ 
+StrVec& StrVec::operator=(StrVec&& rhs) noexcept {
+    if (this != &rhs) {
+        free();
+        elements = rhs.elements;
+        first_free = rhs.first_free;
+        cap = rhs.cap;
+        rhs.elements = rhs.first_free = rhs.cap = nullptr;
+    }
+    return *this;
+}
+
+// String
+ 
+String& String::operator=(const String& rhs) {
+    auto newstr = alloc_n_copy(rhs.elements, rhs.end);
+    free();
+    elements = newstr.first;
+    end = newstr.second;
+    return *this;
+}
+
+String::String(String&& s) noexcept : elements(s.elements), end(s.end) {
+    s.elements = s.end = nullptr;
+}
+
+String& String::operator=(String&& rhs) noexcept {
+    if (this != &rhs) {
+        free();
+        elements = rhs.elements;
+        end = rhs.end;
+        rhs.elements = rhs.end = nullptr;
+    }
+    return *this;
+}
+
+// Message
+Folder::Folder(Folder&& f) {
+    move_Messages(&f);
+}
+
+Folder& Folder::operator=(Folder&& f) {
+    if (this != &f) {
+        remove_from_Messages();
+        move_Messages(&f);
+    }
+    return *this;
+}
