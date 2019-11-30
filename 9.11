@@ -1,0 +1,27 @@
+
+```c++
+
+#include<iostream>
+#include<cstdio>
+#include<vector>
+
+int main() {
+    // 默认构造函数,v1为空
+    std::vector<int> v1;
+    // 拷贝初始化,v3，v2为v1的拷贝构造，与v1保持一致
+    std::vector<int> v2(v1);
+    std::vector<int> v3 = v1;
+    // 序列初始化，v4，v5均为包含1，2,3,4,5五个元素的vector
+    std::vector<int> v4{1, 2, 3, 4, 5};
+    std::vector<int> v5 = {1, 2, 3, 4, 5};
+    // 迭代拷贝，v6将从给出的迭代器所制定的序列进行拷贝，即v4的1,2,3,4,5
+    std::vector<int> v6(v4.begin(), v4.end()-1);
+    // 默认值初始化，初始化包含5个默认的int类型的vector
+    std::vector<int> v7(5);
+    // 指定值初始化，初始化包含5个1的vector
+    std::vector<int> v8(5, 1);
+    return 0;
+}
+
+
+```
