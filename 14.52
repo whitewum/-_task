@@ -1,0 +1,11 @@
+1.ld=si+ld
+由于LongDouble不能转换为SmallInt，因此Smallint的成员operator+和friend operator都不可行。
+由于Smallint不能转换为LongDouble，LongDouble的成员operator+和非成员operator+也都不可行。
+由于SmallInt可以转换为int， LongDouble了可以转换为float和double，所以内置的operator+(int, float)和operator+(int, double)都可行，会产生二义性。
+
+2.ld=ld+si
+类似上一个加法表达式，由于Smallint不能转换为double，LongDouble也不能转换为SmallInt，
+因此SmallInt的成员operator+和两个非成员operator+都不匹配。
+LongDouble的成员operator+可行，且为精确匹配。
+SmallInt可以转换为int，longDouble可以转换为float和double，因此内置的operator+(float, int)和operator(double, int)都可行。
+但它们都需要类型转换，因此LongDouble的成员operator+优先匹配。
