@@ -1,0 +1,13 @@
+class limit_quote : public Disc_quote {
+ public:
+  limit_quote();
+  limit_quote(const string&book, double price, size_t qty, double disc) : Disc_quote(book, price, qty,disc) {}
+  double net_price(size_t n) const {
+    if (n > quantity) {
+			return quantity*(1-_discount)*price+(n-quantity)*price;
+		}
+    else {
+			return quantity*(1-_discount)*price;
+    }
+	}
+};
